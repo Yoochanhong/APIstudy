@@ -33,14 +33,9 @@ class _MyHomePageState extends State<MyHomePage> {
             children: [
               Text('$result'),
               IconButton(
-                onPressed: () async {
-                  var url =
-                      'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-0ac3f716-2db1-4a98-a55a-aaed9f682e40';
-                  var response = await http.get(Uri.parse(url));
-                  setState(() {
-                    result = response.body;
-                  });
-                  },
+                onPressed: () {
+                  getJsonData();
+                }
                 icon: Icon(Icons.add_circle_outlined),
                 color: Colors.blue,
               ),
@@ -49,5 +44,9 @@ class _MyHomePageState extends State<MyHomePage> {
         ),
       ),
     );
+  }
+  Future<String> getJsonData() async {
+    var url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-0ac3f716-2db1-4a98-a55a-aaed9f682e40';
+    var response = await http.get(Uri.parse(url));
   }
 }
