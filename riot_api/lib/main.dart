@@ -1,12 +1,10 @@
-import 'package:flutter/material.dart';
 import 'dart:convert';
+import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 
-void main() => runApp(const MyApp());
+void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({super.key});
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -22,6 +20,8 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   String result = '';
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,13 +31,15 @@ class _MyHomePageState extends State<MyHomePage> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text('$result'),
+              Padding(
+                padding: EdgeInsets.all(8),
+              ),
               IconButton(
                 onPressed: () {
                   getJsonData();
-                }
-                icon: Icon(Icons.add_circle_outlined),
+                },
                 color: Colors.blue,
+                icon: Icon(Icons.add),
               ),
             ],
           ),
@@ -45,8 +47,17 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
     );
   }
-  Future<String> getJsonData() async {
-    var url = 'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-0ac3f716-2db1-4a98-a55a-aaed9f682e40';
-    var response = await http.get(Uri.parse(url));
-  }
 }
+
+  Future <dynamic> getJsonData() async {
+    var url =
+        'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-e92d3fd9-a7b8-468c-81c3-637646c09962';
+    http.Response response = await http.get(Uri.parse(url));
+    print(response.statusCode);
+    print(response.body);
+    if (response.statusCode == 200) {
+      String jsonData = response.body;
+      var parsingData = jsonDecode(jsonData);
+      return parsingData;
+    }
+  }
