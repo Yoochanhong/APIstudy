@@ -22,15 +22,12 @@ class MyHomePage extends StatefulWidget {
 class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
-    final future = getJsonData();
     return Scaffold(
       appBar: AppBar(
         title: Text('라이엇 일병 구하기'),
         actions: [
           IconButton(
-            onPressed: () {
-              getJsonData();
-            },
+            onPressed: () {},
             icon: Icon(Icons.refresh),
           ),
         ],
@@ -49,15 +46,13 @@ class _MyHomePageState extends State<MyHomePage> {
   }
 }
 
-getJsonData() async {
-  var url =
-      'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-abed83b4-610e-4d8b-8932-761e8163a9c8';
-  http.Response response = await http.get(Uri.parse(url));
-  print(response.statusCode);
-  print(response.body);
-  if (response.statusCode == 200) {
-    String jsonData = response.body;
-    var parsingData = jsonDecode(jsonData);
+Future<Info> fetchInfo() async {
+  final response = await http.get(Uri.parse(
+      'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-39d9ecc4-47cc-4c46-aba1-5ba3fcf7214d'));
+  if (response.statusCode == 200){
+    return Info.fromjson(json.decode(response.body));
+  } else {
+    throw Exception('실패');
   }
 }
 
