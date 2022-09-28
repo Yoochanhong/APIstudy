@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
+import 'package:riot_api/InfoClass.dart';
 
 Future<Info> fetchInfo() async {
   final response = await http.get(Uri.parse(
@@ -13,38 +14,6 @@ Future<Info> fetchInfo() async {
     throw Exception('실패');
   }
 }
-
-class Info {
-  final String? id;
-  final String? accountId;
-  final String? puuid;
-  final String? name;
-  final int? profileIconId;
-  final int? revisionDate;
-  final int? summonerLevel;
-
-  Info(
-      {this.id,
-        this.accountId,
-        this.puuid,
-        this.name,
-        this.profileIconId,
-        this.revisionDate,
-        this.summonerLevel});
-
-  factory Info.fromjson(Map<dynamic, dynamic> json) {
-    return Info(
-      id: json['id'],
-      accountId: json['accountId'],
-      puuid: json['puuid'],
-      name: json['name'],
-      profileIconId: json['profileIconId'],
-      revisionDate: json['revisionDate'],
-      summonerLevel: json['summonerLevel'],
-    );
-  }
-}
-
 
 void main() => runApp(MyApp());
 
