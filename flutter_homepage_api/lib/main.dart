@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
-import 'package:flutter_homepage_api/fetchPost.dart';
 import 'package:flutter_homepage_api/PostClass.dart';
+import 'package:flutter_homepage_api/fetchPost.dart';
 
 void main() => runApp(MyApp());
 
@@ -17,7 +15,7 @@ class _MyAppState extends State<MyApp> {
   Future<Post>? post;
 
   @override
-  void initState(){
+  void initState() {
     super.initState();
     post = fetchPost();
   }
@@ -25,6 +23,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('공홈 api 그대로 따오기'),
@@ -33,9 +32,9 @@ class _MyAppState extends State<MyApp> {
           child: FutureBuilder<Post>(
             future: post,
             builder: (context, snapshot) {
-              if (snapshot.hasData){
+              if (snapshot.hasData) {
                 return Text(snapshot.data!.title!);
-              } else if (snapshot.hasError){
+              } else if (snapshot.hasError) {
                 return Text("${snapshot.error}");
               }
               return CircularProgressIndicator();
@@ -46,4 +45,3 @@ class _MyAppState extends State<MyApp> {
     );
   }
 }
-
