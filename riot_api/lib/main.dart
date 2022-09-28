@@ -5,7 +5,7 @@ import 'package:http/http.dart' as http;
 
 Future<Info> fetchInfo() async {
   final response = await http.get(Uri.parse(
-      'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-c1cb31ba-db37-47aa-a42c-d796c1351b69'));
+      'https://kr.api.riotgames.com/lol/summoner/v4/summoners/by-name/%EC%9C%A0%EC%B0%AC%ED%99%8D?api_key=RGAPI-b335729b-b50b-40ea-8322-0d588863e6f8'));
   if (response.statusCode == 200) {
     print(json.decode(response.body));
     return Info.fromjson(json.decode(response.body));
@@ -15,13 +15,13 @@ Future<Info> fetchInfo() async {
 }
 
 class Info {
-  String? id;
-  String? accountId;
-  String? puuid;
-  String? name;
-  int? profileIconId;
-  int? revisionDate;
-  int? summonerLevel;
+  final String? id;
+  final String? accountId;
+  final String? puuid;
+  final String? name;
+  final int? profileIconId;
+  final int? revisionDate;
+  final int? summonerLevel;
 
   Info(
       {this.id,
@@ -89,11 +89,16 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Container(
         child: Center(
           child: FutureBuilder<Info>(
+            future: info,
             builder: (context, snapshot) {
-              print("snapshot");
-              print(snapshot);
               if (snapshot.hasData) {
-                return Text(snapshot.data!.name.toString());
+                return Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Text(snapshot.data!.name!),
+                    Text("Level:"+ snapshot.data!.summonerLevel!.toString()),
+                  ],
+                );
               } else if (snapshot.hasError) {
                 return Text('${snapshot.error}');
               } else {
