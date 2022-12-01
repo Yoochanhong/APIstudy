@@ -176,6 +176,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "4.7.0"
+  kakao_flutter_sdk:
+    dependency: "direct main"
+    description:
+      name: kakao_flutter_sdk
+      sha256: "5e8c9018f7384252b6466cfe11ebd0a1e19f5c19dae7658977c5734c2e521378"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
   kakao_flutter_sdk_auth:
     dependency: transitive
     description:
@@ -192,8 +200,48 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.2.2"
+  kakao_flutter_sdk_navi:
+    dependency: transitive
+    description:
+      name: kakao_flutter_sdk_navi
+      sha256: "19adf0271b32d5c1b4cf993f9a787083e6f877b7fd3231e7e5802abc154589fe"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
+  kakao_flutter_sdk_share:
+    dependency: transitive
+    description:
+      name: kakao_flutter_sdk_share
+      sha256: ee9bb0d5551102c15515971003b861d72b0ce97777a501c4f612622608e8a3ff
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
+  kakao_flutter_sdk_story:
+    dependency: transitive
+    description:
+      name: kakao_flutter_sdk_story
+      sha256: "34b9bbc627978db195a0e7422cb1a822e44f431ef8fe97ee67cafbff180e7360"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
+  kakao_flutter_sdk_talk:
+    dependency: transitive
+    description:
+      name: kakao_flutter_sdk_talk
+      sha256: f77b750c072fef8483689daf65a584df6993fc17b1c7b9659df327c402760319
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
+  kakao_flutter_sdk_template:
+    dependency: transitive
+    description:
+      name: kakao_flutter_sdk_template
+      sha256: "84f16093b841fe2958c8ffb17538d2b578416ed3e6aa7c6a969070ff94bdde15"
+      url: "https://pub.dev"
+    source: hosted
+    version: "1.2.2"
   kakao_flutter_sdk_user:
-    dependency: "direct main"
+    dependency: transitive
     description:
       name: kakao_flutter_sdk_user
       sha256: a8f1ef1e9fc1d6a8d3b4f13d7238ce38203210daa9e6db0c7245e1efd4fd28b1
