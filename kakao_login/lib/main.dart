@@ -38,7 +38,10 @@ class _KakaoLoginPageState extends State<KakaoLoginPage> {
             borderRadius: BorderRadius.circular(10.0),
           ),
           elevation: 1.0,
-          onPressed: () {},
+          onPressed: () async{
+            String authcode = await AuthCodeClient.instance.request();
+            print(authcode);
+          },
           color: Colors.yellow,
           child: Text(
             '카톡 로그인 버튼',
